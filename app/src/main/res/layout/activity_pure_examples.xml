@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".features.rxjava.RxJavaExamplesActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_1"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_simpleRetrofit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Simple Retrofit"/>
+
+            <Button
+                android:id="@+id/btn_async_simple"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Async task Simple"/>
+
+            <Button
+                android:id="@+id/btn_async_weak_ref"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Async task Weak ref"/>
+
+            <Button
+                android:id="@+id/btn_manual_handler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Manual Handler"/>
+
+            <Button
+                android:id="@+id/btn_data_handler_simple"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Data Handler Simple"/>
+
+            <Button
+                android:id="@+id/btn_data_handler_reg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Data Handler Registering"/>
+
+            <Button
+                android:id="@+id/btn_data_handler_scoped"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Data Handler Scoped"/>
+
+            <Button
+                android:id="@+id/btn_data_handler_callbacking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Data Handler Callbacking"/>
+
+            <Button
+                android:id="@+id/btn_data_handler_callback_requestState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Data Handler Callbacking with request state"/>
+
+            <Button
+                android:id="@+id/btn_data_handler_callback_delegated"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Data Handler Callbacking with Delegated loader"/>
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

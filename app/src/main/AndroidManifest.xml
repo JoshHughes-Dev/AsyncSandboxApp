@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jhughes.sandboxapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".SandboxApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar">
+
+        <activity android:name=".ui.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".features.pureRetrofit.examples.RetrofitSimpleActivity"/>
+        <activity android:name=".features.pureRetrofit.examples.AsyncTaskSimpleActivity" />
+        <activity android:name=".features.pureRetrofit.examples.AsyncTaskWeakRefActivity" />
+        <activity android:name=".features.pureRetrofit.examples.ManualHandlerSimpleActivity" />
+        <activity android:name=".features.pureRetrofit.examples.DataHandlerSimpleActivity" />
+        <activity android:name=".features.pureRetrofit.examples.DataHandlerRegisteringActivity" />
+        <activity android:name=".features.pureRetrofit.examples.DataHandlerScopedActivity" />
+
+        <activity android:name=".features.pureRetrofit.examples.CallbackOnlyActivity" />
+        <activity android:name=".features.pureRetrofit.examples.CallbackWithRequestStateActivity" />
+        <activity android:name=".features.pureRetrofit.examples.CallbackWithDelegatedUIActivity" />
+        <activity android:name=".features.coolbeans.CoolBeansActivity" />
+        <activity android:name=".features.pureRetrofit.PureExamplesActivity" />
+        <activity android:name=".features.liveData.AndroidArchitectureExamples" />
+        <activity android:name=".features.rxjava.RxJavaExamplesActivity" />
+        <activity android:name=".features.rxjava.examples.RxJavaRequestStateAdvancedActivity" />
+        <activity android:name=".features.rxjava.examples.RxJavaDataHandlerActivity" />
+        <activity android:name=".features.rxjava.examples.RxJavaRequestStateActivity" />
+        <activity android:name=".features.rxjava.examples.RxJavaSimpleActivity" />
+        <activity android:name=".features.rxjava.examples.RxJavaSimpleDisposedActivity" />
+        <activity android:name=".features.liveData.examples.SimpleArchActivity" />
+        <activity android:name=".features.liveData.examples.ArchPostingFromThreadActivity" />
+
+    </application>
+
+</manifest>

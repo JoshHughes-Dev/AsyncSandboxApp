@@ -1,0 +1,74 @@
+package com.jhughes.sandboxapp.remote.service
+
+import com.google.gson.FieldNamingPolicy
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
+
+object DataPoliceServiceFactory {
+
+    private const val baseURL = "https://data.police.uk/api/"
+
+    fun makeDataPoliceService(isDebug: Boolean): DataPoliceApi {
+        val okHttpClient = makeOkHttpClient(
+                makeLoggingInterceptor(isDebug))
+        return makeDataPoliceService(okHttpClient, makeGson())
+    }
+
+    fun makeDataPoliceRxJavaService(isDebug: Boolean): DataPoliceApiRxjava {
+        val okHttpClient = makeOkHttpClient(
+                makeLoggingInterceptor(isDebug))
+        return makeDataPoliceRxJavaService(okHttpClient, makeGson())
+    }
+
+    private fun makeDataPoliceService(okHttpClient: OkHttpClient, gson: Gson): DataPoliceApi {
+        val retrofit = Retrofit.Builder()
+                .baseUrl(baseURL)
+                .client(okHttpClient)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build()
+        return retrofit.create(DataPoliceApi::class.java)
+    }
+
+    private fun makeDataPoliceRxJavaService(okHttpClient: OkHttpClient, gson: Gson): DataPoliceApiRxjava {
+        val retrofit = Retrofit.Builder()
+                .baseUrl(baseURL)
+                .client(okHttpClient)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build()
+        return retrofit.create(DataPoliceApiRxjava::class.java)
+    }
+
+    private fun makeOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+        return OkHttpClient.Builder()
+                .addInterceptor(httpLoggingInterceptor)
+                .addInterceptor(DelayInterceptor())
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
+                .build()
+    }
+
+    private fun makeGson(): Gson {
+        return GsonBuilder()
+                .setLenient()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                .create()
+    }
+
+    private fun makeLoggingInterceptor(isDebug: Boolean): HttpLoggingInterceptor {
+        val logging = HttpLoggingInterceptor()
+        logging.level = if (isDebug)
+            HttpLoggingInterceptor.Level.BODY
+        else
+            HttpLoggingInterceptor.Level.NONE
+        return logging
+    }
+}
